@@ -1,0 +1,46 @@
+object constants {
+    const val  USER_NAME:String="username"
+    const val TOTAL_QUESTIONS:String="t_questions"
+    const val CORRECT_ANSWERS:String="correct_answers"
+    
+    
+  /* i created constants object in advance we will help me to store user name given by the user so that i can be used later also it helps to store the total number of question 
+      that the app will ask from user and we can also easily change it.it  will make my code smaller and easier to manipulate  as shown in below comments*/
+   
+  fun getquestions():ArrayList<questions>{
+      var list= ArrayList<questions>()
+      val ques1=questions(1,"what country does this flag belong to ?",
+          R.drawable.flag_austria,
+          "India",
+          "U.K",
+          "Germany",
+          "Poland",2)
+      list.add(ques1)
+      }
+    }
+      
+      ------------------------------------------------------------------------------------------------------------------
+      class Final_Result : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_final__result)
+
+        val userName=intent.getStringExtra(constants.USER_NAME)                // like here we can get user name  directly from constants object 
+        val Score=intent.getIntExtra(constants.CORRECT_ANSWERS,0)             /* here we got the correct answer for the given question directly from constants object 
+                                                                                so that we can match it with the answer given by the user*/ 
+                                                                                
+        val total_questions=intent.getIntExtra(constants.TOTAL_QUESTIONS,0)
+        User_Name.text=userName
+        if (Score<=total_questions) {
+            your_score.text = "Your Score is $Score out of $total_questions"
+        }else{
+
+            your_score.text =" Malpractices sensed !!"
+        }
+        btn_submit.setOnClickListener(){
+            startActivity(Intent(this,MainActivity::class.java))
+            finish()
+        }
+    }
+
+}
